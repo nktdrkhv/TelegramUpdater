@@ -16,8 +16,8 @@ public static class CallbackQueryContainerExtensions
         => simpleContext.Update.From;
 
     /// <inheritdoc cref="TelegramBotClientExtensions.SendTextMessageAsync(
-    /// ITelegramBotClient, ChatId, string, ParseMode?,
-    /// IEnumerable{MessageEntity}?, bool?, bool?, int?,
+    /// ITelegramBotClient, ChatId, string, int?, ParseMode?,
+    /// IEnumerable{MessageEntity}?, bool?, bool?, bool?, int?,
     /// bool?, IReplyMarkup?, CancellationToken)"/>
     public static async Task<IContainer<Message>> SendAsync(
         this IContainer<CallbackQuery> simpleContext,
@@ -27,6 +27,7 @@ public static class CallbackQueryContainerExtensions
         IEnumerable<MessageEntity>? messageEntities = default,
         bool? disableWebpagePreview = default,
         bool? disableNotification = default,
+        bool? protectContent = default,
         IReplyMarkup? replyMarkup = default)
     {
         if (simpleContext.Update.Message != null)
@@ -34,9 +35,9 @@ public static class CallbackQueryContainerExtensions
 
             return await simpleContext.BotClient.SendTextMessageAsync(
                 simpleContext.Update.Message.Chat.Id,
-                text, parseMode, messageEntities,
-                disableWebpagePreview, disableNotification,
-                replyToMessageId: sendAsReply ? simpleContext.Update.Message.MessageId : 0,
+                text, simpleContext.Update.Message?.MessageThreadId, parseMode, messageEntities,
+                disableWebpagePreview, disableNotification, protectContent,
+                replyToMessageId: sendAsReply ? simpleContext.Update.Message!.MessageId : 0,
                 allowSendingWithoutReply: true,
                 replyMarkup: replyMarkup)
                 .WrapMessageAsync(simpleContext.Updater);
@@ -137,11 +138,11 @@ public static class CallbackQueryContainerExtensions
     }
 
     /// <inheritdoc cref="TelegramBotClientExtensions.EditMessageMediaAsync(
-    /// ITelegramBotClient, ChatId, int, InputMediaBase,
+    /// ITelegramBotClient, ChatId, int, InputMedia,
     /// InlineKeyboardMarkup?, CancellationToken)"/>
     public static async Task<IContainer<Message>?> EditAsync(
         this IContainer<CallbackQuery> simpleContext,
-        InputMediaBase inputMediaBase,
+        InputMedia inputMedia,
         InlineKeyboardMarkup? inlineKeyboardMarkup = default,
         CancellationToken cancellationToken = default)
     {
@@ -149,7 +150,7 @@ public static class CallbackQueryContainerExtensions
         {
             await simpleContext.BotClient.EditMessageMediaAsync(
                 simpleContext.Update.InlineMessageId,
-                inputMediaBase,
+                inputMedia,
                 inlineKeyboardMarkup,
                 cancellationToken);
             return null;
@@ -159,7 +160,7 @@ public static class CallbackQueryContainerExtensions
             return await simpleContext.BotClient.EditMessageMediaAsync(
                 simpleContext.Update.Message.Chat.Id,
                 simpleContext.Update.Message.MessageId,
-                inputMediaBase,
+                inputMedia,
                 inlineKeyboardMarkup,
                 cancellationToken)
                 .WrapMessageAsync(simpleContext.Updater);

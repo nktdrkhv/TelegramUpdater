@@ -17,7 +17,6 @@ public abstract class MessageHandler : AnyHandler<Message>
     {
     }
 
-
     #region Extension Methods
     /// <inheritdoc cref="Message.From"/>.
     protected User? From => ActualUpdate.From;
@@ -37,8 +36,8 @@ public abstract class MessageHandler : AnyHandler<Message>
     protected bool IsReplied => RepliedTo is not null;
 
     /// <inheritdoc cref="TelegramBotClientExtensions.SendTextMessageAsync(
-    /// ITelegramBotClient, ChatId, string, ParseMode?,
-    /// IEnumerable{MessageEntity}?, bool?, bool?, int?, bool?,
+    /// ITelegramBotClient, ChatId, string, int?, ParseMode?,
+    /// IEnumerable{MessageEntity}?, bool?, bool?, bool?, int?, bool?,
     /// IReplyMarkup?, CancellationToken)"/>.
     /// <remarks>This methos sends a message to the <see cref="Message.Chat"/></remarks>
     protected async Task<Message> ResponseAsync(
@@ -53,6 +52,7 @@ public abstract class MessageHandler : AnyHandler<Message>
         CancellationToken cancellationToken = default)
         => await BotClient.SendTextMessageAsync(Chat.Id,
                                                 text,
+                                                ActualUpdate?.MessageThreadId,
                                                 parseMode,
                                                 entities,
                                                 disableWebPagePreview,
@@ -64,11 +64,11 @@ public abstract class MessageHandler : AnyHandler<Message>
                                                 cancellationToken);
 
     /// <inheritdoc cref="TelegramBotClientExtensions.SendTextMessageAsync(
-    /// ITelegramBotClient, ChatId, string, ParseMode?,
-    /// IEnumerable{MessageEntity}?, bool?, bool?, int?, bool?,
+    /// ITelegramBotClient, ChatId, string, int?, ParseMode?,
+    /// IEnumerable{MessageEntity}?, bool?, bool?, bool?, int?, bool?,
     /// IReplyMarkup?, CancellationToken)"/>.
     protected async Task<Message> SendTextMessageAsync(
-        ChatId chatId, string text, ParseMode? parseMode = default,
+        ChatId chatId, string text, int? messageThreadId = null, ParseMode? parseMode = default,
         IEnumerable<MessageEntity>? entities = default,
         bool? disableWebPagePreview = default,
         bool? disableNotification = default,
@@ -79,6 +79,7 @@ public abstract class MessageHandler : AnyHandler<Message>
         CancellationToken cancellationToken = default)
         => await BotClient.SendTextMessageAsync(chatId,
                                                 text,
+                                                messageThreadId,
                                                 parseMode,
                                                 entities,
                                                 disableWebPagePreview,

@@ -39,7 +39,7 @@ public static class MessageContainerExtensions
         await simpleContext.Delete();
         return await simpleContext.BotClient.SendTextMessageAsync(
             simpleContext.Update.Chat.Id,
-            text, parseMode, messageEntities,
+            text, simpleContext.Update.MessageThreadId, parseMode, messageEntities,
             disableWebpagePreview, disableNotification,
             replyToMessageId: sendAsReply ? simpleContext.Update.MessageId : 0,
             allowSendingWithoutReply: true,
@@ -48,8 +48,8 @@ public static class MessageContainerExtensions
     }
 
     /// <inheritdoc cref="TelegramBotClientExtensions.SendTextMessageAsync(
-    /// ITelegramBotClient, ChatId, string, ParseMode?,
-    /// IEnumerable{MessageEntity}?, bool?, bool?, int?,
+    /// ITelegramBotClient, ChatId, string, int?, ParseMode?,
+    /// IEnumerable{MessageEntity}?, bool?, bool?, bool?, int?,
     /// bool?, IReplyMarkup?, CancellationToken)"/>
     public static async Task<IContainer<Message>> ResponseAsync(
         this IContainer<Message> simpleContext,
@@ -62,9 +62,9 @@ public static class MessageContainerExtensions
         IReplyMarkup? replyMarkup = default)
         => await simpleContext.BotClient.SendTextMessageAsync(
             simpleContext.Update.Chat.Id,
-            text, parseMode, messageEntities,
+            text, simpleContext.Update?.MessageThreadId, parseMode, messageEntities,
             disableWebpagePreview, disableNotification,
-            replyToMessageId: sendAsReply ? simpleContext.Update.MessageId : 0,
+            replyToMessageId: sendAsReply ? simpleContext.Update!.MessageId : 0,
             allowSendingWithoutReply: true,
             replyMarkup: replyMarkup)
         .WrapMessageAsync(simpleContext.Updater);
