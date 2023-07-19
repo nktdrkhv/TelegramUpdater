@@ -21,7 +21,7 @@ public static class UpdaterExtensions
                 $"Can't resolve Update of Type {update.Type}");
 
         return typeof(Update).GetProperty(update.Type.ToString())?
-            .GetValue(update, null)?? throw new InvalidOperationException(
+            .GetValue(update, null) ?? throw new InvalidOperationException(
                 $"Inner update is null for {update.Type}");
     }
 
@@ -32,7 +32,7 @@ public static class UpdaterExtensions
                 $"Can't resolve Update of Type {update.Type}");
 
         return (T)(typeof(Update).GetProperty(update.Type.ToString())?
-            .GetValue(update, null)?? throw new InvalidOperationException(
+            .GetValue(update, null) ?? throw new InvalidOperationException(
                 $"Inner update is null for {update.Type}"));
     }
 
@@ -55,7 +55,7 @@ public static class UpdaterExtensions
         if (nsParts.Length < 3)
             throw new Exception("Namespace is invalid.");
 
-        updateType = nsParts[2] switch
+        updateType = nsParts[^1] switch
         {
             "Messages" => UpdateType.Message,
             "EditedChannelPosts" => UpdateType.EditedChannelPost,
@@ -150,7 +150,8 @@ public static class UpdaterExtensions
                 x.Namespace is not null &&
                 x.Namespace.StartsWith(handlerNs))
             .Where(x => x.IsClass)
-            .Where(x => typeof(IScopedUpdateHandler).IsAssignableFrom(x));
+            .Where(x => typeof(IScopedUpdateHandler).IsAssignableFrom(x))
+            .ToArray();
 
         foreach (var scopedType in scopedHandlersTypes)
         {
@@ -270,7 +271,7 @@ public static class UpdaterExtensions
             .Where(x => x.Filter is not null)
             .Select(x => x.Filter!.DiscoverNestedFilters())
             .SelectMany(x => x)
-            .Where(x=> x is CommandFilter)
+            .Where(x => x is CommandFilter)
             .Cast<CommandFilter>();
 
         var scopedHandlerFilters = updater.ScopedHandlerContainers
@@ -285,7 +286,7 @@ public static class UpdaterExtensions
         var allCommands = singletonHandlerFilters.Concat(scopedHandlerFilters);
 
         var groupedCommands = allCommands.GroupBy(
-            x => x.Options.BotCommandScope?.Type?? BotCommandScopeType.Default);
+            x => x.Options.BotCommandScope?.Type ?? BotCommandScopeType.Default);
 
         foreach (var scope in groupedCommands)
         {
@@ -293,15 +294,15 @@ public static class UpdaterExtensions
 
             await updater.BotClient.SetMyCommandsAsync(
                 scope
-                    .Where(x=> x.Options.Descriptions is not null)
+                    .Where(x => x.Options.Descriptions is not null)
                     .SelectMany(x => x.ToBotCommand())
-                    .OrderBy(x=> x.priority)
-                    .Select(x=> x.command),
+                    .OrderBy(x => x.priority)
+                    .Select(x => x.command),
                 commandScope);
 
             updater.Logger.LogInformation(
                 "Set {count} commands to scope {scope}.",
-                scope.Count(), commandScope?.Type?? BotCommandScopeType.Default);
+                scope.Count(), commandScope?.Type ?? BotCommandScopeType.Default);
         }
     }
 }
