@@ -29,7 +29,8 @@ public abstract class MessageHandler : AnyHandler<Message>
 
     /// <inheritdoc cref="Message.MessageId"/>.
     protected int Id => ActualUpdate.MessageId;
-
+    /// <inheritdoc cref="Message.MessageThreadId"/>.
+    protected int? ThreadId => ActualUpdate?.MessageThreadId;
     /// <summary>
     /// Check if the message is replied to another.
     /// </summary>
@@ -41,7 +42,8 @@ public abstract class MessageHandler : AnyHandler<Message>
     /// IReplyMarkup?, CancellationToken)"/>.
     /// <remarks>This methos sends a message to the <see cref="Message.Chat"/></remarks>
     protected async Task<Message> ResponseAsync(
-        string text, ParseMode? parseMode = default,
+        string text, int? messageThreadId = null,
+        ParseMode? parseMode = default,
         IEnumerable<MessageEntity>? entities = default,
         bool? disableWebPagePreview = default,
         bool? disableNotification = default,
@@ -52,7 +54,7 @@ public abstract class MessageHandler : AnyHandler<Message>
         CancellationToken cancellationToken = default)
         => await BotClient.SendTextMessageAsync(Chat.Id,
                                                 text,
-                                                ActualUpdate?.MessageThreadId,
+                                                messageThreadId ?? ThreadId,
                                                 parseMode,
                                                 entities,
                                                 disableWebPagePreview,
@@ -79,7 +81,7 @@ public abstract class MessageHandler : AnyHandler<Message>
         CancellationToken cancellationToken = default)
         => await BotClient.SendTextMessageAsync(chatId,
                                                 text,
-                                                messageThreadId,
+                                                messageThreadId ?? ThreadId,
                                                 parseMode,
                                                 entities,
                                                 disableWebPagePreview,
@@ -103,6 +105,7 @@ public abstract class MessageHandler : AnyHandler<Message>
     public async Task<string?> AwaitTextInputAsync(
         TimeSpan timeOut,
         string text,
+        int? messageThreadId = null,
         ParseMode? parseMode = default,
         IEnumerable<MessageEntity>? entities = default,
         bool? disableWebPagePreview = default,
@@ -119,7 +122,7 @@ public abstract class MessageHandler : AnyHandler<Message>
     {
         if (text is not null)
             await ResponseAsync(
-                text, parseMode, entities, disableWebPagePreview,
+                text, messageThreadId ?? ThreadId, parseMode, entities, disableWebPagePreview,
                 disableNotification, protectContents, sendMessageAsReply, allowSendingWithoutReply,
                 replyMarkup, cancellationToken: cancellationToken);
 

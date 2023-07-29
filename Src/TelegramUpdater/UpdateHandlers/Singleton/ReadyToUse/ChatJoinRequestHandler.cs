@@ -25,7 +25,7 @@ public sealed class ChatJoinRequestHandler : AnyHandler<ChatJoinRequest>
     public ChatJoinRequestHandler(Func<IContainer<ChatJoinRequest>, Task> callback,
                                   IFilter<ChatJoinRequest>? filter,
                                   int group)
-        : base(UpdateType.ChatJoinRequest, x=> x.ChatJoinRequest, callback, filter, group)
+        : base(UpdateType.ChatJoinRequest, x => x.ChatJoinRequest, callback, filter, group)
     {
     }
 }

@@ -8,7 +8,7 @@
 
         internal FromUsernamesFilter(
             Func<T, string?> usernameSelector, params string[] usernames)
-        { 
+        {
             _usernameSelector = usernameSelector;
             Usernames = usernames;
         }

@@ -429,7 +429,7 @@ namespace TelegramUpdater
             IFilter<T>? filter = null;
             foreach (var batch in filterAttributes)
             {
-                (IFilter<T>? f, bool asOr, bool reverse) = batch.JoinFilterAttributes<T>(); 
+                (IFilter<T>? f, bool asOr, bool reverse) = batch.JoinFilterAttributes<T>();
 
                 if (f is not null)
                 {

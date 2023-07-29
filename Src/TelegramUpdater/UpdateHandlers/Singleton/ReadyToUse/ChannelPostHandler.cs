@@ -24,8 +24,8 @@ public sealed class ChannelPostHandler : AnyHandler<Message>
     /// </param>
     public ChannelPostHandler(Func<IContainer<Message>, Task> callback,
                               IFilter<Message>? filter,
-                              int group) 
-        : base(UpdateType.ChannelPost, x=> x.ChannelPost, callback, filter, group)
+                              int group)
+        : base(UpdateType.ChannelPost, x => x.ChannelPost, callback, filter, group)
     {
     }
 }

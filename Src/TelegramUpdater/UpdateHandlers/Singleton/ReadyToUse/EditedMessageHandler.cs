@@ -25,7 +25,7 @@ public sealed class EditedMessageHandler : AnyHandler<Message>
     public EditedMessageHandler(Func<IContainer<Message>, Task> callback,
                                 IFilter<Message>? filter,
                                 int group)
-        : base(UpdateType.EditedMessage, x=> x.EditedMessage, callback, filter, group)
+        : base(UpdateType.EditedMessage, x => x.EditedMessage, callback, filter, group)
     {
     }
 }

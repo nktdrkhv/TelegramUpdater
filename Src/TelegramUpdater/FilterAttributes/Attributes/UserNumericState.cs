@@ -19,7 +19,7 @@ public sealed class UserNumericState : FilterAttributeBuilder
     /// <param name="anyState">If <paramref name="state"/> is not a care.</param>
     public UserNumericState(string stateKeeperName, int state = 0, bool anyState = false)
         : base(builder => builder.AddFilterForUpdate(
-            new MessageUserHasNumericStateFilter(stateKeeperName, anyState? null: state))
+            new MessageUserHasNumericStateFilter(stateKeeperName, anyState ? null : state))
         .AddFilterForUpdate(
             new CallbackQueryUserHasNumericStateFilter(stateKeeperName, anyState ? null : state)))
     {

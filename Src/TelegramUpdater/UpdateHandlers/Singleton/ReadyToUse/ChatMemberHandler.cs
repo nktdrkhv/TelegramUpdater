@@ -25,7 +25,7 @@ public sealed class ChatMemberHandler : AnyHandler<ChatMemberUpdated>
     public ChatMemberHandler(Func<IContainer<ChatMemberUpdated>, Task> callback,
                              IFilter<ChatMemberUpdated>? filter,
                              int group)
-        : base(UpdateType.ChatMember, x=> x.ChatMember, callback, filter, group)
+        : base(UpdateType.ChatMember, x => x.ChatMember, callback, filter, group)
     {
     }
 }

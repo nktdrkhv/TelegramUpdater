@@ -25,7 +25,7 @@ public sealed class EditedChannelPostHandler : AnyHandler<Message>
     public EditedChannelPostHandler(Func<IContainer<Message>, Task> callback,
                                     IFilter<Message>? filter,
                                     int group)
-        : base(UpdateType.EditedChannelPost, x=> x.EditedChannelPost, callback, filter, group)
+        : base(UpdateType.EditedChannelPost, x => x.EditedChannelPost, callback, filter, group)
     {
     }
 }

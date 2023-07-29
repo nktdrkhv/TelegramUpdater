@@ -14,7 +14,7 @@ public sealed class PreCheckoutQueryChannel : AnyChannel<PreCheckoutQuery>
     /// <param name="timeOut">Timeout to wait for channel.</param>
     /// <param name="filter">Filter suitable update to channel within <paramref name="timeOut"/>.</param>
     public PreCheckoutQueryChannel(TimeSpan timeOut, IFilter<PreCheckoutQuery>? filter)
-        : base(UpdateType.PreCheckoutQuery, x=> x.PreCheckoutQuery, timeOut, filter)
+        : base(UpdateType.PreCheckoutQuery, x => x.PreCheckoutQuery, timeOut, filter)
     {
     }
 }

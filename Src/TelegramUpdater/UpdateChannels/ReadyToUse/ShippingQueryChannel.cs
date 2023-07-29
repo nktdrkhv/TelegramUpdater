@@ -14,7 +14,7 @@ public sealed class ShippingQueryChannel : AnyChannel<ShippingQuery>
     /// <param name="timeOut">Timeout to wait for channel.</param>
     /// <param name="filter">Filter suitable update to channel within <paramref name="timeOut"/>.</param>
     public ShippingQueryChannel(TimeSpan timeOut, IFilter<ShippingQuery>? filter)
-        : base(UpdateType.ShippingQuery, x=> x.ShippingQuery, timeOut, filter)
+        : base(UpdateType.ShippingQuery, x => x.ShippingQuery, timeOut, filter)
     {
     }
 }

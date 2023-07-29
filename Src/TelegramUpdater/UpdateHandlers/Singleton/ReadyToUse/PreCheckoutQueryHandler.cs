@@ -26,7 +26,7 @@ public sealed class PreCheckoutQueryHandler : AnyHandler<PreCheckoutQuery>
     public PreCheckoutQueryHandler(Func<IContainer<PreCheckoutQuery>, Task> callback,
                                    IFilter<PreCheckoutQuery>? filter,
                                    int group)
-        : base(UpdateType.PreCheckoutQuery, x=> x.PreCheckoutQuery, callback, filter, group)
+        : base(UpdateType.PreCheckoutQuery, x => x.PreCheckoutQuery, callback, filter, group)
     {
     }
 }

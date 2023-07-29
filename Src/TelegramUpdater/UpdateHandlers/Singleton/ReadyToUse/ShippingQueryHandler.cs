@@ -26,7 +26,7 @@ public sealed class ShippingQueryHandler : AnyHandler<ShippingQuery>
     public ShippingQueryHandler(Func<IContainer<ShippingQuery>, Task> callback,
                                 IFilter<ShippingQuery>? filter,
                                 int group)
-        : base(UpdateType.ShippingQuery, x=> x.ShippingQuery, callback, filter, group)
+        : base(UpdateType.ShippingQuery, x => x.ShippingQuery, callback, filter, group)
     {
     }
 }

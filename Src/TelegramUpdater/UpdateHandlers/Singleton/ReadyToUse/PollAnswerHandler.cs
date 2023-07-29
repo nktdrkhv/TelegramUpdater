@@ -25,7 +25,7 @@ public sealed class PollAnswerHandler : AnyHandler<PollAnswer>
     public PollAnswerHandler(Func<IContainer<PollAnswer>, Task> callback,
                              IFilter<PollAnswer>? filter,
                              int group)
-        : base(UpdateType.PollAnswer, x=> x.PollAnswer, callback, filter, group)
+        : base(UpdateType.PollAnswer, x => x.PollAnswer, callback, filter, group)
     {
     }
 }

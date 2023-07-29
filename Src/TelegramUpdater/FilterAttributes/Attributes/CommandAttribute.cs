@@ -233,7 +233,7 @@ public sealed class CommandAttribute : AbstractFilterAttribute
         int joinArgsFormIndex = 0,
         bool caseSensitive = default)
     {
-        Filter = new(deepLinkArg, joinArgs? joinArgsFormIndex: null, caseSensitive);
+        Filter = new(deepLinkArg, joinArgs ? joinArgsFormIndex : null, caseSensitive);
     }
 
     /// <inheritdoc/>

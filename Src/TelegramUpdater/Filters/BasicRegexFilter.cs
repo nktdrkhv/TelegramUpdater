@@ -30,7 +30,7 @@ namespace TelegramUpdater.Filters
             _getText = getText;
             _regex = new Regex(
                 pattern, regexOptions ?? RegexOptions.None,
-                matchTimeout?? TimeSpan.FromSeconds(5));
+                matchTimeout ?? TimeSpan.FromSeconds(5));
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace TelegramUpdater.Filters
             Func<T, string?> getText,
             Regex regex)
         {
-            _getText= getText;
+            _getText = getText;
             _regex = regex;
         }
 
@@ -74,7 +74,7 @@ namespace TelegramUpdater.Filters
         /// Create an <see cref="string"/> regex filter.
         /// </summary>
         /// <param name="regex">Regex compiled object.</param>
-        public StringRegex(Regex regex) : base(x=> x, regex)
+        public StringRegex(Regex regex) : base(x => x, regex)
         {
         }
 
@@ -85,7 +85,7 @@ namespace TelegramUpdater.Filters
         /// <param name="regexOptions">Regex options.</param>
         /// <param name="matchTimeout">Timeout for regex matching.</param>
         public StringRegex(string pattern, RegexOptions? regexOptions = null, TimeSpan? matchTimeout = null)
-            : base(x=> x, pattern, regexOptions, matchTimeout)
+            : base(x => x, pattern, regexOptions, matchTimeout)
         {
         }
     }
@@ -99,7 +99,7 @@ namespace TelegramUpdater.Filters
         /// Create an <see cref="CallbackQuery.Data"/> regex filter.
         /// </summary>
         /// <param name="regex">Regex compiled object.</param>
-        public CallbackQueryRegex(Regex regex) : base(x=> x.Data, regex)
+        public CallbackQueryRegex(Regex regex) : base(x => x.Data, regex)
         {
         }
 
@@ -110,7 +110,7 @@ namespace TelegramUpdater.Filters
         /// <param name="regexOptions">Regex options.</param>
         /// <param name="matchTimeout">Timeout for regex matching.</param>
         public CallbackQueryRegex(string pattern, RegexOptions? regexOptions = null, TimeSpan? matchTimeout = null)
-            : base(x=> x.Data, pattern, regexOptions, matchTimeout)
+            : base(x => x.Data, pattern, regexOptions, matchTimeout)
         {
         }
     }

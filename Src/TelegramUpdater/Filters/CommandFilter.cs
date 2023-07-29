@@ -257,8 +257,8 @@ namespace TelegramUpdater.Filters
                 }
                 else
                 {
-                    return nakedArgs[..Options.ExactArgs.Length].Select(x=> x.ToLower())
-                        .SequenceEqual(Options.ExactArgs.Select(x=> x.ToLower()));
+                    return nakedArgs[..Options.ExactArgs.Length].Select(x => x.ToLower())
+                        .SequenceEqual(Options.ExactArgs.Select(x => x.ToLower()));
                 }
             }
 
