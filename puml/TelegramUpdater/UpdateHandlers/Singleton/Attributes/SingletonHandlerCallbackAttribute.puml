@@ -1,0 +1,8 @@
+@startuml
+class SingletonHandlerCallbackAttribute <<sealed>> {
+    + SingletonHandlerCallbackAttribute(updateType:UpdateType)
+    + Group : int <<get>> <<set>> = default
+}
+Attribute <|-- SingletonHandlerCallbackAttribute
+SingletonHandlerCallbackAttribute --> "UpdateType" UpdateType
+@enduml

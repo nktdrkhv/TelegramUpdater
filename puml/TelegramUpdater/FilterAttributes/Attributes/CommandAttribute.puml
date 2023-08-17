@@ -1,0 +1,17 @@
+@startuml
+class CommandAttribute <<sealed>> {
+    + CommandAttribute(commands:string[])
+    + CommandAttribute(prefix:char, commands:string[])
+    + CommandAttribute(prefix:char, argumentsMode:ArgumentsMode, commands:string[])
+    + CommandAttribute(command:string, prefix:char, argumentsMode:ArgumentsMode)
+    + CommandAttribute(command:string, joinArgsFormIndex:int, prefix:char, argumentsMode:ArgumentsMode, separator:char)
+    + CommandAttribute(command:string, separator:char, prefix:char, argumentsMode:ArgumentsMode)
+    + CommandAttribute(commands:string[], descriptions:string[], setCommandPriorities:int[]?, prefix:char, argumentsMode:ArgumentsMode, separator:char, joinArgs:bool, joinArgsFormIndex:int, botUsername:string, botCommandScopeType:BotCommandScopeType, caseSensitive:bool)
+    + CommandAttribute(command:string, description:string, setCommandPriority:int, prefix:char, argumentsMode:ArgumentsMode, separator:char, joinArgs:bool, joinArgsFormIndex:int, botUsername:string, botCommandScopeType:BotCommandScopeType, caseSensitive:bool)
+    + CommandAttribute(deepLinkArg:string, joinArgs:bool, joinArgsFormIndex:int, caseSensitive:bool)
+    # <<internal>> <<override>> GetFilterTypeOf(requestedType:Type) : object
+    - {static} ToBotCommandScope(botCommandScopeType:BotCommandScopeType) : BotCommandScope
+}
+AbstractFilterAttribute <|-- CommandAttribute
+CommandAttribute --> "Filter" CommandFilter
+@enduml

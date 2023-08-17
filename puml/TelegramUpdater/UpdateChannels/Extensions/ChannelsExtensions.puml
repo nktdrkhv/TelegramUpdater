@@ -1,0 +1,16 @@
+@startuml
+class ChannelsExtensions <<static>> {
+    + {static} <<async>> OpenChannelAsync(container:IContainer<TCur>, updateChannel:IGenericUpdateChannel<TExp>, onUnrelatedUpdate:Func<
+            IUpdater, ShiningInfo<long, Update>,
+            Task>?, cancellationToken:CancellationToken) : ValueTask<IContainer<TExp>?>
+    + {static} <<async>> ChannelMessageAsync(updateContainer:IContainer<K>, filter:Filter<Message>?, timeOut:TimeSpan?, onUnrelatedUpdate:Func<
+            IUpdater,
+            ShiningInfo<long, Update>, Task>?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} <<async>> ChannelUserResponse(updateContainer:IContainer<Message>, timeOut:TimeSpan, onUnrelatedUpdate:Func<
+            IUpdater,
+            ShiningInfo<long, Update>, Task>?, filter:Filter<Message>?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} <<async>> ChannelButtonClickAsync(updateContainer:IContainer<T>, timeOut:TimeSpan, callbackQueryRegex:CallbackQueryRegex, onUnrelatedUpdate:Func<
+            IUpdater,
+            ShiningInfo<long, Update>, Task>?, cancellationToken:CancellationToken) : Task<IContainer<CallbackQuery>?>
+}
+@enduml

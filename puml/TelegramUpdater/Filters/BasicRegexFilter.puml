@@ -1,0 +1,29 @@
+@startuml
+class "BasicRegexFilter`1"<T> {
+    + BasicRegexFilter(getText:Func<T, string?>, pattern:string, regexOptions:RegexOptions?, matchTimeout:TimeSpan?)
+    + BasicRegexFilter(getText:Func<T, string?>, regex:Regex)
+    + <<override>> TheyShellPass(_:IUpdater, input:T) : bool
+}
+class StringRegex <<sealed>> {
+    + StringRegex(regex:Regex)
+    + StringRegex(pattern:string, regexOptions:RegexOptions?, matchTimeout:TimeSpan?)
+}
+class CallbackQueryRegex <<sealed>> {
+    + CallbackQueryRegex(regex:Regex)
+    + CallbackQueryRegex(pattern:string, regexOptions:RegexOptions?, matchTimeout:TimeSpan?)
+}
+class MessageTextRegex <<sealed>> {
+    + MessageTextRegex(regex:Regex, catchCaption:bool)
+    + MessageTextRegex(pattern:string, catchCaption:bool, regexOptions:RegexOptions?, matchTimeout:TimeSpan?)
+}
+class "Filter`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+"Filter`1" "<T>" <|-- "BasicRegexFilter`1"
+"BasicRegexFilter`1" --> "_getText<T,string?>" "Func`2"
+"BasicRegexFilter`1" --> "_regex" Regex
+"BasicRegexFilter`1" "<string>" <|-- StringRegex
+"BasicRegexFilter`1" "<CallbackQuery>" <|-- CallbackQueryRegex
+"BasicRegexFilter`1" "<Message>" <|-- MessageTextRegex
+@enduml

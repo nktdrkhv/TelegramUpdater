@@ -1,0 +1,18 @@
+@startuml
+class UpdaterBuilder <<sealed>> {
+    - _updater : IUpdater?
+    + UpdaterBuilder(botClient:ITelegramBotClient)
+    + UpdaterBuilder(apiToken:string)
+    + StepOne(maxDegreeOfParallelism:int?, logger:ILogger<Updater>?, cancellationToken:CancellationToken, flushUpdatesQueue:bool, allowedUpdates:UpdateType[]?) : UpdaterBuilder
+    + StepOne(updaterOptions:UpdaterOptions) : UpdaterBuilder
+    + StepTwo(callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?, allowedHandlers:Type[]?) : UpdaterBuilder
+    + StepTwo(callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?) : UpdaterBuilder
+    + StepTwo(inherit:bool) : UpdaterBuilder
+    + StepTwo(exceptionHandler:IExceptionHandler) : UpdaterBuilder
+    + StepThree(callback:Func<IContainer<Message>, Task>, filter:Filter<Message>?) : IUpdater
+    + StepThree(singletonUpdateHandler:ISingletonUpdateHandler) : IUpdater
+    + StepThree(scopedHandlerContainer:IScopedUpdateHandlerContainer) : IUpdater
+    + StepThree(autoCollectScopedHandlers:bool) : IUpdater
+}
+UpdaterBuilder --> "_botClient" ITelegramBotClient
+@enduml

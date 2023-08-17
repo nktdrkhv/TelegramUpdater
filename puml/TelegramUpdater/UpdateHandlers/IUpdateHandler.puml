@@ -1,0 +1,6 @@
+@startuml
+interface IUpdateHandler {
+    + Group : int <<get>>
+    <<internal>> HandleAsync(updater:IUpdater, shiningInfo:ShiningInfo<long, Update>) : Task
+}
+@enduml

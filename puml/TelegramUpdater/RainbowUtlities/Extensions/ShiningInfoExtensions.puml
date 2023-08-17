@@ -1,0 +1,8 @@
+@startuml
+class ShiningInfoExtensions <<static>> {
+    + {static} DropPendingAsync(shiningInfo:ShiningInfo<TId, TValue>) : bool
+    + {static} TryCountPending(shiningInfo:ShiningInfo<TId, TValue>, count:int?) : bool
+    + {static} <<async>> ReadNextAsync(shiningInfo:ShiningInfo<TId, TValue>, timeOut:TimeSpan, cancellationToken:CancellationToken) : ValueTask<ShiningInfo<TId, TValue>?>
+    + {static} <<async>> YieldAsync(shiningInfo:ShiningInfo<TId, TValue>, cancellationToken:CancellationToken) : IAsyncEnumerable<ShiningInfo<TId, TValue>>
+}
+@enduml

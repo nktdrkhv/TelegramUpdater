@@ -1,0 +1,8 @@
+@startuml
+class ChatJoinRequestChannel <<sealed>> {
+    + ChatJoinRequestChannel(timeOut:TimeSpan, filter:IFilter<ChatJoinRequest>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<ChatJoinRequest>" <|-- ChatJoinRequestChannel
+@enduml

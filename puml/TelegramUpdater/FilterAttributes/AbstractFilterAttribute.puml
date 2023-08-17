@@ -1,0 +1,12 @@
+@startuml
+abstract class AbstractFilterAttribute {
+    <<internal>> GetFilterTypeOf() : Filter<TUpdate>
+    # <<internal>> {abstract} GetFilterTypeOf(requestedType:Type) : object
+    + ApplyAsOr : bool <<get>> <<set>> = false
+    + Reverse : bool <<get>> <<set>> = false
+    + BatchStart : bool <<get>> <<set>> = false
+    + ReverseBatch : bool <<get>> <<set>> = false
+    + OrBatch : bool <<get>> <<set>> = false
+}
+Attribute <|-- AbstractFilterAttribute
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class "AnyContainer`1"<T> {
+    <<internal>> AnyContainer(insiderResolver:Func<Update, T?>, updater:IUpdater, shiningInfo:ShiningInfo<long, Update>, extraObjects:IReadOnlyDictionary<string, object>?)
+}
+class "UpdateContainerAbs`1"<T> {
+}
+"UpdateContainerAbs`1" "<T>" <|-- "AnyContainer`1"
+@enduml

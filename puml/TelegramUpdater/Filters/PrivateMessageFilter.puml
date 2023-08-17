@@ -1,0 +1,8 @@
+@startuml
+class PrivateMessageFilter {
+    + PrivateMessageFilter()
+}
+class "Filter`1"<T> {
+}
+"Filter`1" "<Message>" <|-- PrivateMessageFilter
+@enduml

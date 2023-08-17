@@ -1,0 +1,8 @@
+@startuml
+class ShippingQueryChannel <<sealed>> {
+    + ShippingQueryChannel(timeOut:TimeSpan, filter:IFilter<ShippingQuery>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<ShippingQuery>" <|-- ShippingQueryChannel
+@enduml

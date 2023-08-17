@@ -1,0 +1,4 @@
+@startuml
+class RainbowExtensions <<static>> {
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class StopPropagation {
+    + StopPropagation()
+}
+class ContinuePropagation {
+    + ContinuePropagation()
+}
+Exception <|-- StopPropagation
+Exception <|-- ContinuePropagation
+@enduml

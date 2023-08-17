@@ -1,0 +1,8 @@
+@startuml
+class CallbackQueryHandler <<sealed>> {
+    + CallbackQueryHandler(callback:Func<IContainer<CallbackQuery>, Task>, filter:IFilter<CallbackQuery>?, group:int)
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<CallbackQuery>" <|-- CallbackQueryHandler
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class MessageContainerExtensions <<static>> {
+    + {static} SenderId(simpleContext:IContainer<Message>) : long?
+    + {static} Sender(simpleContext:IContainer<Message>) : User?
+    + {static} <<async>> Delete(simpleContext:IContainer<Message>) : Task
+    + {static} <<async>> ForceUpdateAsync(simpleContext:IContainer<Message>, text:string, sendAsReply:bool, parseMode:ParseMode?, messageEntities:IEnumerable<MessageEntity>?, disableWebpagePreview:bool?, disableNotification:bool?, replyMarkup:IReplyMarkup?) : Task<IContainer<Message>>
+    + {static} <<async>> ResponseAsync(simpleContext:IContainer<Message>, text:string, sendAsReply:bool, parseMode:ParseMode?, messageEntities:IEnumerable<MessageEntity>?, disableWebpagePreview:bool?, disableNotification:bool?, replyMarkup:IReplyMarkup?) : Task<IContainer<Message>>
+    + {static} <<async>> EditAsync(simpleContext:IContainer<Message>, text:string, parseMode:ParseMode?, messageEntities:IEnumerable<MessageEntity>?, disableWebpagePreview:bool?, inlineKeyboardMarkup:InlineKeyboardMarkup?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} IsPrivate(simpleContext:IContainer<Message>) : bool
+    + {static} IsGroup(simpleContext:IContainer<Message>) : bool
+}
+@enduml

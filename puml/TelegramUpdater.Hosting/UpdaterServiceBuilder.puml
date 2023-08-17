@@ -1,0 +1,23 @@
+@startuml
+class UpdaterServiceBuilder {
+    + UpdaterServiceBuilder()
+    <<internal>> AddToUpdater(updater:IUpdater) : void
+    <<internal>> IterScopedContainers() : IEnumerable<IScopedUpdateHandlerContainer>
+    <<internal>> AddToServiceCollection(serviceDescriptors:IServiceCollection) : void
+    + AddScopedUpdateHandler(scopedHandlerContainer:IScopedUpdateHandlerContainer) : UpdaterServiceBuilder
+    + AddScopedUpdateHandler(filter:Filter<TUpdate>?, updateType:UpdateType?, getT:Func<Update, TUpdate>?) : UpdaterServiceBuilder
+    + AddScopedUpdateHandler(typeOfScopedHandler:Type, filter:Filter<TUpdate>?, updateType:UpdateType?, getT:Func<Update, TUpdate>?) : UpdaterServiceBuilder
+    + AddMessageHandler(filter:Filter<Message>?) : UpdaterServiceBuilder
+    + AddCallbackQueryHandler(filter:Filter<CallbackQuery>?) : UpdaterServiceBuilder
+    + ExecuteOthers(action:Action<IUpdater>) : UpdaterServiceBuilder
+    + AddExceptionHandler(exceptionHandler:IExceptionHandler) : UpdaterServiceBuilder
+    + AddExceptionHandler(callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?, allowedHandlers:Type[]?, inherit:bool) : UpdaterServiceBuilder
+    + AddExceptionHandler(callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?, inherit:bool) : UpdaterServiceBuilder
+    + AddDefaultExceptionHandler(logLevel:LogLevel?) : UpdaterServiceBuilder
+    + AutoCollectScopedHandlers(handlersParentNamespace:string) : UpdaterServiceBuilder
+}
+class "List`1"<T> {
+}
+UpdaterServiceBuilder --> "_scopedHandlerContainers<IScopedUpdateHandlerContainer>" "List`1"
+UpdaterServiceBuilder --> "_otherExecutions<Action<IUpdater>>" "List`1"
+@enduml

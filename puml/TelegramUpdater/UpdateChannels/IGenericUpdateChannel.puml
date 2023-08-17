@@ -1,0 +1,7 @@
+@startuml
+interface "IGenericUpdateChannel`1"<T> {
+    <<internal>> ExtraData : IReadOnlyDictionary<string, object>? <<get>>
+    + GetActualUpdate(update:Update) : T?
+}
+IUpdateChannel <|-- "IGenericUpdateChannel`1"
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class "FromUsersFilter`1"<T> {
+    <<internal>> FromUsersFilter(userSelector:Func<T, long?>, users:long[])
+    + <<override>> TheyShellPass(_:IUpdater, input:T) : bool
+}
+class FromUsersFilter <<static>> {
+    + {static} Messages(users:long[]) : Filter<Message>
+    + {static} CallbackQueries(users:long[]) : Filter<CallbackQuery>
+    + {static} InlineQueries(users:long[]) : Filter<InlineQuery>
+}
+class "Filter`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+"Filter`1" "<T>" <|-- "FromUsersFilter`1"
+"FromUsersFilter`1" --> "_userSelector<T,long?>" "Func`2"
+@enduml

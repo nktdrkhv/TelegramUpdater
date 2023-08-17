@@ -1,0 +1,9 @@
+@startuml
+interface "IGenericSingletonUpdateHandler`1"<T> {
+    + Filter : IFilter<T>? <<get>>
+}
+class "Func`2"<T1,T2> {
+}
+ISingletonUpdateHandler <|-- "IGenericSingletonUpdateHandler`1"
+"IGenericSingletonUpdateHandler`1" --> "GetActualUpdate<Update,T?>" "Func`2"
+@enduml

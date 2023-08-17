@@ -1,0 +1,20 @@
+@startuml
+abstract class "AnyHandler`1"<T> {
+    <<internal>> AnyHandler(getT:Func<Update, T?>, group:int)
+    <<internal>> # <<sealed>> <<override>> ContainerBuilder(updater:IUpdater, shiningInfo:ShiningInfo<long, Update>) : IContainer<T>
+    # StopPropagation() : void
+    # ContinuePropagation() : void
+    + <<async>> OpenChannelAsync(updateChannel:IGenericUpdateChannel<TExp>, onUnrelatedUpdate:Func<
+            IUpdater, ShiningInfo<long, Update>,
+            Task>?, cancellationToken:CancellationToken) : ValueTask<IContainer<TExp>?>
+    + <<async>> AwaitMessageAsync(filter:Filter<Message>?, timeOut:TimeSpan?, onUnrelatedUpdate:Func<
+            IUpdater,
+            ShiningInfo<long, Update>, Task>?, cancellationToken:CancellationToken) : ValueTask<IContainer<Message>?>
+    + <<async>> AwaitButtonClickAsync(timeOut:TimeSpan, callbackQueryRegex:CallbackQueryRegex, onUnrelatedUpdate:Func<
+            IUpdater,
+            ShiningInfo<long, Update>, Task>?, cancellationToken:CancellationToken) : Task<IContainer<CallbackQuery>?>
+}
+class "AbstractScopedUpdateHandler`1"<T> {
+}
+"AbstractScopedUpdateHandler`1" "<T>" <|-- "AnyHandler`1"
+@enduml

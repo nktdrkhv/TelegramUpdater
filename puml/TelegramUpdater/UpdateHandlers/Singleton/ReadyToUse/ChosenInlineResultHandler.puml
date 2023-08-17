@@ -1,0 +1,8 @@
+@startuml
+class ChosenInlineResultHandler <<sealed>> {
+    + ChosenInlineResultHandler(callback:Func<IContainer<ChosenInlineResult>, Task>, filter:IFilter<ChosenInlineResult>?, group:int)
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<ChosenInlineResult>" <|-- ChosenInlineResultHandler
+@enduml

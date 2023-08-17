@@ -1,0 +1,15 @@
+@startuml
+class SingletonUpdateHandlerExtensions <<static>> {
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, updateSelector:Func<Update, T?>, callback:Func<IContainer<T>, Task>, filter:Filter<T>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, updateType:UpdateType, callback:Func<IContainer<Message>, Task>, filter:Filter<Message>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, updateType:UpdateType, callback:Func<IContainer<ChatMemberUpdated>, Task>, filter:Filter<ChatMemberUpdated>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<CallbackQuery>, Task>, filter:Filter<CallbackQuery>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<InlineQuery>, Task>, filter:Filter<InlineQuery>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<ChosenInlineResult>, Task>, filter:Filter<ChosenInlineResult>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<ChatJoinRequest>, Task>, filter:Filter<ChatJoinRequest>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<Poll>, Task>, filter:Filter<Poll>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<PollAnswer>, Task>, filter:Filter<PollAnswer>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<PreCheckoutQuery>, Task>, filter:Filter<PreCheckoutQuery>?, group:int) : IUpdater
+    + {static} AddSingletonUpdateHandler(updater:IUpdater, callback:Func<IContainer<ShippingQuery>, Task>, filter:Filter<ShippingQuery>?, group:int) : IUpdater
+}
+@enduml

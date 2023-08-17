@@ -1,0 +1,8 @@
+@startuml
+class ChannelPostChannel <<sealed>> {
+    + ChannelPostChannel(timeOut:TimeSpan, filter:IFilter<Message>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<Message>" <|-- ChannelPostChannel
+@enduml

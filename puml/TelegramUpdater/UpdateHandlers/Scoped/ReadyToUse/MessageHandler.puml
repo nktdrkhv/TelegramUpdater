@@ -1,0 +1,20 @@
+@startuml
+abstract class MessageHandler {
+    # MessageHandler(group:int)
+    # From : User? <<get>>
+    # RepliedTo : Message? <<get>>
+    # Id : int <<get>>
+    # ThreadId : int? <<get>>
+    # IsReplied : bool <<get>>
+    # <<async>> ResponseAsync(text:string, messageThreadId:int?, parseMode:ParseMode?, entities:IEnumerable<MessageEntity>?, disableWebPagePreview:bool?, disableNotification:bool?, protectContents:bool?, sendMessageAsReply:bool?, allowSendingWithoutReply:bool?, replyMarkup:IReplyMarkup?, cancellationToken:CancellationToken) : Task<Message>
+    # <<async>> SendTextMessageAsync(chatId:ChatId, text:string, messageThreadId:int?, parseMode:ParseMode?, entities:IEnumerable<MessageEntity>?, disableWebPagePreview:bool?, disableNotification:bool?, protectContents:bool?, replyToMessageId:int?, allowSendingWithoutReply:bool?, replyMarkup:IReplyMarkup?, cancellationToken:CancellationToken) : Task<Message>
+    # <<async>> DeleteAsync(cancellationToken:CancellationToken) : Task
+    + <<async>> AwaitTextInputAsync(timeOut:TimeSpan, text:string, messageThreadId:int?, parseMode:ParseMode?, entities:IEnumerable<MessageEntity>?, disableWebPagePreview:bool?, disableNotification:bool?, protectContents:bool?, sendMessageAsReply:bool?, allowSendingWithoutReply:bool?, replyMarkup:IReplyMarkup?, onTimeOut:Func<CancellationToken, Task>?, onUnrelatedUpdate:Func<
+            IUpdater,
+            ShiningInfo<long, Update>, Task>?, cancellationToken:CancellationToken) : Task<string?>
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<Message>" <|-- MessageHandler
+MessageHandler --> "Chat" Chat
+@enduml

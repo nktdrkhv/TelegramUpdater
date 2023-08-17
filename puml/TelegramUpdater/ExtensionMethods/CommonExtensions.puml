@@ -1,0 +1,8 @@
+@startuml
+class CommonExtensions <<static>> {
+    <<internal>> {static} RebaseAsRaw(container:IContainer<T>, shiningInfo:ShiningInfo<long, Update>) : RawContainer
+    <<internal>> {static} <<async>> WrapAsync(t:Task<T>, insiderResovler:Expression<Func<Update, T?>>, updater:IUpdater) : Task<IContainer<T>>
+    <<internal>> {static} Wrap(t:T, insiderResovler:Expression<Func<Update, T?>>, updater:IUpdater) : IContainer<T>
+    <<internal>> {static} <<async>> WrapMessageAsync(t:Task<Message>, updater:IUpdater) : Task<IContainer<Message>>
+}
+@enduml

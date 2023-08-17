@@ -1,0 +1,7 @@
+@startuml
+class ShiningInfoContainerExtensions <<static>> {
+    + {static} DropPendingAsync(container:IContainer<T>) : bool
+    + {static} TryCountPending(container:IContainer<T>, count:int?) : bool
+    + {static} <<async>> ReadNextAsync(container:IContainer<T>, timeOut:TimeSpan, cancellationToken:CancellationToken) : ValueTask<ShiningInfo<long, Update>?>
+}
+@enduml

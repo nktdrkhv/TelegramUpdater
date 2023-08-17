@@ -1,0 +1,8 @@
+@startuml
+class SimpleUpdateWriter {
+    <<async>> - HandleUpdateAsync(botClient:ITelegramBotClient, update:Update, cancellationToken:CancellationToken) : Task
+    - HandleErrorAsync(botClient:ITelegramBotClient, exception:Exception, cancellationToken:CancellationToken) : Task
+    + <<override>> <<async>> ExecuteAsync(stoppingToken:CancellationToken) : Task
+}
+UpdateWriterAbs <|-- SimpleUpdateWriter
+@enduml

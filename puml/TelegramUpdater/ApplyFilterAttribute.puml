@@ -1,0 +1,8 @@
+@startuml
+class ApplyFilterAttribute <<sealed>> {
+    + ApplyFilterAttribute(filterType:Type)
+    # <<internal>> <<override>> GetFilterTypeOf(requestedType:Type) : object
+}
+AbstractFilterAttribute <|-- ApplyFilterAttribute
+ApplyFilterAttribute --> "FilterType" Type
+@enduml

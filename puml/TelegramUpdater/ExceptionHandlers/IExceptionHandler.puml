@@ -1,0 +1,15 @@
+@startuml
+interface IExceptionHandler {
+    + AllowedHandlers : IEnumerable<Type>? <<get>>
+    + MessageMatch : Filter<string>? <<get>>
+    + Inherit : bool <<get>>
+    <<internal>> TypeIsMatched(typeOfException:Type) : bool
+    <<internal>> MessageMatched(updater:IUpdater, message:string) : bool
+    <<internal>> IsAllowedHandler(handlerType:Type) : bool
+    + {static} ExceptionsInHandler(callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?) : ExceptionHandler<TException>
+}
+class "Func`3"<T1,T2,T3> {
+}
+IExceptionHandler --> "ExceptionType" Type
+IExceptionHandler --> "Callback<IUpdater,Exception,Task>" "Func`3"
+@enduml

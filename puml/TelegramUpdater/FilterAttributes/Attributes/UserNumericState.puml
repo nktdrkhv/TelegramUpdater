@@ -1,0 +1,6 @@
+@startuml
+class UserNumericState <<sealed>> {
+    + UserNumericState(stateKeeperName:string, state:int, anyState:bool)
+}
+FilterAttributeBuilder <|-- UserNumericState
+@enduml

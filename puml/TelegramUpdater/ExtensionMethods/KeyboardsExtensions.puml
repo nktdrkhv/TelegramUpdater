@@ -1,0 +1,6 @@
+@startuml
+class MarkupExtensions <<static>> {
+    + {static} BuildInlineKeyboards(buildButtonsGrid:Action<GridCollection<InlineKeyboardButton>>, rowCapacity:int?) : InlineKeyboardMarkup
+    + {static} BuildReplyKeyboards(buildButtonsGrid:Action<GridCollection<KeyboardButton>>, rowCapacity:int?) : ReplyKeyboardMarkup
+}
+@enduml

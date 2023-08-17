@@ -1,0 +1,10 @@
+@startuml
+class UserNumericStateKeeper <<sealed>> {
+}
+class "AbstractNumericStateKeeper`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+"AbstractNumericStateKeeper`1" "<User>" <|-- UserNumericStateKeeper
+UserNumericStateKeeper --> "KeyResolver<User,long>" "Func`2"
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+abstract class FilterAttributeBuilder {
+    + FilterAttributeBuilder(builder:Action<FilterAttributeBuilder>)
+    + AddFilterForUpdate(filter:Filter<T>) : FilterAttributeBuilder
+    # <<internal>> <<override>> GetFilterTypeOf(requestedType:Type) : object
+}
+class "Dictionary`2"<T1,T2> {
+}
+AbstractFilterAttribute <|-- FilterAttributeBuilder
+FilterAttributeBuilder --> "_filtersPerUpdateType<Type,object>" "Dictionary`2"
+@enduml

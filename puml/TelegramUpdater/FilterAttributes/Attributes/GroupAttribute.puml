@@ -1,0 +1,6 @@
+@startuml
+class GroupAttribute <<sealed>> {
+    + GroupAttribute()
+}
+FilterAttributeBuilder <|-- GroupAttribute
+@enduml

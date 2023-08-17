@@ -1,0 +1,60 @@
+@startuml
+interface "IFilter`1"<T> {
+    + TheyShellPass(updater:IUpdater, input:T) : bool
+    + ExtraData : IReadOnlyDictionary<string, object>? <<get>>
+    + And(simpleFilter:IFilter<T>) : IFilter<T>
+    + Or(simpleFilter:IFilter<T>) : IFilter<T>
+    + Reverse() : IFilter<T>
+}
+interface "IJoinedFilter`1"<T> {
+}
+class "Filter`1"<T> {
+    - <<readonly>> _filter : Func<IUpdater, T, bool>?
+    - _extraData : Dictionary<string, object>?
+    + <<virtual>> ExtraData : IReadOnlyDictionary<string, object>? <<get>>
+    + Filter(filter:Func<IUpdater, T, bool>?)
+    <<internal>> AddOrUpdateData(key:string, value:object) : void
+    + <<virtual>> TheyShellPass(updater:IUpdater, input:T) : bool
+    + And(simpleFilter:IFilter<T>) : IFilter<T>
+    + Or(simpleFilter:IFilter<T>) : IFilter<T>
+    + Reverse() : IFilter<T>
+}
+class "ReverseFilter`1"<T> {
+    + ReverseFilter(filter1:IFilter<T>)
+}
+abstract class "JoinedFilter`1"<T> {
+    - _extraData : Dictionary<string, object>?
+    + JoinedFilter(filters:IFilter<T>[])
+    + ExtraData : IReadOnlyDictionary<string, object>? <<get>>
+    # {abstract} InnerTheyShellPass(updater:IUpdater, input:T) : bool
+    + TheyShellPass(updater:IUpdater, input:T) : bool
+}
+class "AndFilter`1"<T> {
+    + AndFilter(filter1:IFilter<T>, filter2:IFilter<T>)
+    # <<override>> InnerTheyShellPass(updater:IUpdater, input:T) : bool
+}
+class "OrFilter`1"<T> {
+    + OrFilter(filter1:IFilter<T>, filter2:IFilter<T>)
+    # <<override>> InnerTheyShellPass(updater:IUpdater, input:T) : bool
+}
+class FiltersExtensions <<static>> {
+    + {static} IsFilter(type:Type) : bool
+    + {static} IsFilterOfType(filterType:Type, genericType:Type) : bool
+    + {static} IsFilterOfType(filterType:Type) : bool
+    + {static} DiscoverNestedFilters(filter:IFilter<T>) : IEnumerable<IFilter<T>>
+    - {static} BatchifyFilterAttributes(filterAttributes:IEnumerable<AbstractFilterAttribute>) : List<List<AbstractFilterAttribute>>
+    - {static} AppendFilter(cur:IFilter<T>?, toAppend:IFilter<T>, asOr:bool, reverse:bool) : IFilter<T>
+    - {static} JoinFilterAttributes(filterAttributes:IEnumerable<AbstractFilterAttribute>) : (IFilter<T>? filter, bool asOr, bool reverse)
+    - {static} JoinFilterAttributes(filterAttributes:IEnumerable<IEnumerable<AbstractFilterAttribute>>) : IFilter<T>?
+    <<internal>> {static} GetFilterAttributes(type:Type) : IFilter<T>?
+    <<internal>> {static} GetFilterAttributes(method:MethodInfo) : IFilter<T>?
+}
+class "Func`3"<T1,T2,T3> {
+}
+"IFilter`1" "<T>" <|-- "IJoinedFilter`1"
+"IFilter`1" "<T>" <|-- "Filter`1"
+"Filter`1" "<T>" <|-- "ReverseFilter`1"
+"IJoinedFilter`1" "<T>" <|-- "JoinedFilter`1"
+"JoinedFilter`1" "<T>" <|-- "AndFilter`1"
+"JoinedFilter`1" "<T>" <|-- "OrFilter`1"
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+abstract class "AbstractStateKeeper`2"<TState,TFrom> {
+    # AbstractStateKeeper()
+    + HasAnyState(stateOf:TFrom) : bool
+    + GetState(stateOf:TFrom) : TState
+    + TryGetState(stateOf:TFrom, theState:TState?) : bool
+    + SetState(stateOf:TFrom, theState:TState) : void
+    + HasState(stateOf:TFrom, theState:TState) : bool
+    + DeleteState(stateOf:TFrom) : bool
+}
+class "IStateKeeper`2"<T1,T2> {
+}
+class "IEquatable`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "Func`2"<T1,T2> {
+}
+"IStateKeeper`2" "<TState,TFrom>" <|-- "AbstractStateKeeper`2"
+"AbstractStateKeeper`2" --> "_state<long,TState>" "Dictionary`2"
+"AbstractStateKeeper`2" --> "KeyResolver<TFrom,long>" "Func`2"
+@enduml

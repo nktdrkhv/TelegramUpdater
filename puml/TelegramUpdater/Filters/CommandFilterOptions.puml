@@ -1,0 +1,19 @@
+@startuml
+enum ArgumentsMode {
+    Idc= 0,
+    Require,
+    NoArgs,
+}
+class CommandFilterOptions <<struct>> {
+    + CommandFilterOptions(argumentsMode:ArgumentsMode, separator:char, joinArgsFormIndex:int?, descriptions:string[]?, botCommandScop:BotCommandScope?, setCommandPriorities:int[]?, botUsername:string?, caseSensitive:bool, exactArgs:string[]?)
+    + CaseSensitive : bool <<get>> = false
+    + Separator : char <<get>> = ' '
+    + JoinArgsFormIndex : int? <<get>> = default
+    + Descriptions : string[]? <<get>> = default
+    + BotCommandScope : BotCommandScope? <<get>> = default
+    + SetCommandPriorities : int[]? <<get>> = default
+    + BotUsername : string? <<get>> = default
+    + ExactArgs : string[]? <<get>> = default
+}
+CommandFilterOptions o-> "ArgumentsMode" ArgumentsMode
+@enduml

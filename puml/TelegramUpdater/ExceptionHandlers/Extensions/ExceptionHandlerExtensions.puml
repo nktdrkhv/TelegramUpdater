@@ -1,0 +1,7 @@
+@startuml
+class ExceptionHandlerExtensions <<static>> {
+    + {static} AddExceptionHandler(updater:IUpdater, callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?, allowedHandlers:Type[]?, inherit:bool) : IUpdater
+    + {static} AddExceptionHandler(updater:IUpdater, callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?, inherit:bool) : IUpdater
+    + {static} AddDefaultExceptionHandler(updater:IUpdater, logLevel:LogLevel?) : IUpdater
+}
+@enduml

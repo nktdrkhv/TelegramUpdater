@@ -1,0 +1,8 @@
+@startuml
+class CallbackQueryContainer <<sealed>> {
+    <<internal>> CallbackQueryContainer(updater:IUpdater, shiningInfo:ShiningInfo<long, Update>, extraObjects:IReadOnlyDictionary<string, object>?)
+}
+class "UpdateContainerAbs`1"<T> {
+}
+"UpdateContainerAbs`1" "<CallbackQuery>" <|-- CallbackQueryContainer
+@enduml

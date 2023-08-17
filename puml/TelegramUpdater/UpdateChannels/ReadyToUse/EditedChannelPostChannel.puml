@@ -1,0 +1,8 @@
+@startuml
+class EditedChannelPostChannel <<sealed>> {
+    + EditedChannelPostChannel(timeOut:TimeSpan, filter:IFilter<Message>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<Message>" <|-- EditedChannelPostChannel
+@enduml

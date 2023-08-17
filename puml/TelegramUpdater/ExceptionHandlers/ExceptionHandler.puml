@@ -1,0 +1,13 @@
+@startuml
+class "ExceptionHandler`1"<TException> {
+    + ExceptionHandler(callback:Func<IUpdater, Exception, Task>, messageMatch:Filter<string>?, allowedHandlers:Type[]?, inherit:bool)
+    + AllowedHandlers : IEnumerable<Type>? <<get>>
+    + MessageMatch : Filter<string>? <<get>>
+    + Inherit : bool <<get>>
+}
+class "Func`3"<T1,T2,T3> {
+}
+IExceptionHandler <|-- "ExceptionHandler`1"
+"ExceptionHandler`1" --> "ExceptionType" Type
+"ExceptionHandler`1" --> "Callback<IUpdater,Exception,Task>" "Func`3"
+@enduml

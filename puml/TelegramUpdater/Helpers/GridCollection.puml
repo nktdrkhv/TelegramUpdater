@@ -1,0 +1,29 @@
+@startuml
+class "GridCollection`1"<T> <<sealed>> {
+    + GridCollection(rowCapacity:int?)
+    + Count : int <<get>>
+    + RowsCount : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + RowCapacity : int? <<get>>
+    + Add(item:T) : void
+    + AddItem(item:T) : GridCollection<T>
+    + AddRow() : GridCollection<T>
+    + AddToRow(item:T) : GridCollection<T>
+    + AddToRow(rowIndex:int, item:T) : GridCollection<T>
+    + Clear() : void
+    + Contains(item:T) : bool
+    + CopyTo(array:T[], arrayIndex:int) : void
+    + GetEnumerator() : IEnumerator<T>
+    + EnumerateRows() : IEnumerable<IEnumerable<T>>
+    + Remove(item:T) : bool
+    + RemoveRow(rowIndex:int) : void
+    - GetEnumerator() : IEnumerator
+}
+class "ICollection`1"<T> {
+}
+class "List`1"<T> {
+}
+"ICollection`1" "<T>" <|-- "GridCollection`1"
+"GridCollection`1" --> "_grid<List<T>>" "List`1"
+"GridCollection`1" --> "Items<List<T>>" "List`1"
+@enduml

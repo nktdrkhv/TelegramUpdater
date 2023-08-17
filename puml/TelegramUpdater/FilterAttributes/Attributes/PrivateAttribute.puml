@@ -1,0 +1,6 @@
+@startuml
+class PrivateAttribute <<sealed>> {
+    + PrivateAttribute()
+}
+FilterAttributeBuilder <|-- PrivateAttribute
+@enduml

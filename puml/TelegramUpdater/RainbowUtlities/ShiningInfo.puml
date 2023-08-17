@@ -1,0 +1,10 @@
+@startuml
+class "ShiningInfo`2"<TId,TValue> <<sealed>> {
+    <<internal>> ShiningInfo(value:TValue, rainbow:Rainbow<TId, TValue>, processId:ushort)
+    + Value : TValue <<get>>
+    + ProcessId : ushort <<get>>
+}
+class "Rainbow`2"<T1,T2> {
+}
+"ShiningInfo`2" --> "Rainbow<TId,TValue>" "Rainbow`2"
+@enduml

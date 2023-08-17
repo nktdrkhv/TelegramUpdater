@@ -1,0 +1,8 @@
+@startuml
+class PreCheckoutQueryChannel <<sealed>> {
+    + PreCheckoutQueryChannel(timeOut:TimeSpan, filter:IFilter<PreCheckoutQuery>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<PreCheckoutQuery>" <|-- PreCheckoutQueryChannel
+@enduml

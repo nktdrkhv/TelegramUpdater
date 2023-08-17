@@ -1,0 +1,10 @@
+@startuml
+class Extensions <<static>> {
+    + {static} AddStateKeeper(updater:IUpdater, name:string, stateKeeper:IStateKeeper<TState, TFrom>) : IUpdater
+    + {static} GetStateKeeper(updater:IUpdater, name:string) : IStateKeeper<TState, TFrom>
+    + {static} TryGetStateKeeper(updater:IUpdater, name:string, stateKeeper:IStateKeeper<TState, TFrom>?) : bool
+    + {static} AddUserNumericStateKeeper(updater:IUpdater, name:string) : IUpdater
+    + {static} GetUserNumericStateKeeper(updater:IUpdater, name:string) : UserNumericStateKeeper
+    + {static} TryGetUserNumericStateKeeper(updater:IUpdater, name:string, stateKeeper:UserNumericStateKeeper?) : bool
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class CallbackQueryContainerExtensions <<static>> {
+    + {static} SenderId(simpleContext:IContainer<CallbackQuery>) : long
+    + {static} Sender(simpleContext:IContainer<CallbackQuery>) : User
+    + {static} <<async>> SendAsync(simpleContext:IContainer<CallbackQuery>, text:string, sendAsReply:bool, parseMode:ParseMode?, messageEntities:IEnumerable<MessageEntity>?, disableWebpagePreview:bool?, disableNotification:bool?, protectContent:bool?, replyMarkup:IReplyMarkup?) : Task<IContainer<Message>>
+    + {static} <<async>> AnswerAsync(simpleContext:IContainer<CallbackQuery>, text:string?, showAlert:bool?, url:string?, cacheTime:int?, cancellationToken:CancellationToken) : Task
+    + {static} <<async>> EditAsync(simpleContext:IContainer<CallbackQuery>, text:string, parseMode:ParseMode?, messageEntities:IEnumerable<MessageEntity>?, disableWebpagePreview:bool?, inlineKeyboardMarkup:InlineKeyboardMarkup?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} <<async>> EditAsync(simpleContext:IContainer<CallbackQuery>, latitude:double, longitude:double, horizontalAccuracy:float?, heading:int?, proximityAlertRadius:int?, inlineKeyboardMarkup:InlineKeyboardMarkup?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} <<async>> EditAsync(simpleContext:IContainer<CallbackQuery>, inputMedia:InputMedia, inlineKeyboardMarkup:InlineKeyboardMarkup?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} <<async>> EditAsync(simpleContext:IContainer<CallbackQuery>, caption:string, parseMode:ParseMode?, messageEntities:IEnumerable<MessageEntity>?, inlineKeyboardMarkup:InlineKeyboardMarkup?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+    + {static} <<async>> EditAsync(simpleContext:IContainer<CallbackQuery>, inlineKeyboardMarkup:InlineKeyboardMarkup?, cancellationToken:CancellationToken) : Task<IContainer<Message>?>
+}
+@enduml

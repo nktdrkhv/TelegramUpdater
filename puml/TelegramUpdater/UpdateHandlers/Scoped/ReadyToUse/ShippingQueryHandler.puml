@@ -1,0 +1,8 @@
+@startuml
+abstract class ShippingQueryHandler {
+    # ShippingQueryHandler(group:int)
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<ShippingQuery>" <|-- ShippingQueryHandler
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class MyChatMemberHandler <<sealed>> {
+    + MyChatMemberHandler(callback:Func<IContainer<ChatMemberUpdated>, Task>, filter:IFilter<ChatMemberUpdated>?, group:int)
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<ChatMemberUpdated>" <|-- MyChatMemberHandler
+@enduml

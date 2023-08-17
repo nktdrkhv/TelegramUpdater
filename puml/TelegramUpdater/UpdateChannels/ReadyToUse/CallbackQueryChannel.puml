@@ -1,0 +1,8 @@
+@startuml
+class CallbackQueryChannel <<sealed>> {
+    + CallbackQueryChannel(timeOut:TimeSpan, filter:IFilter<CallbackQuery>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<CallbackQuery>" <|-- CallbackQueryChannel
+@enduml

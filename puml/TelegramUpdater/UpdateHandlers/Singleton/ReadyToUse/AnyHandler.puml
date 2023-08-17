@@ -1,0 +1,13 @@
+@startuml
+class "AnyHandler`1"<T> {
+    <<internal>> AnyHandler(updateType:UpdateType, getT:Func<Update, T?>, callback:Func<IContainer<T>, Task>, filter:IFilter<T>?, group:int)
+    <<internal>> <<override>> ContainerBuilder(updater:IUpdater, shiningInfo:ShiningInfo<long, Update>) : IContainer<T>
+    # <<override>> <<async>> HandleAsync(updateContainer:IContainer<T>) : Task
+}
+class "AbstractSingletonUpdateHandler`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+"AbstractSingletonUpdateHandler`1" "<T>" <|-- "AnyHandler`1"
+"AnyHandler`1" --> "_handleAsync<IContainer<T>,Task>" "Func`2"
+@enduml

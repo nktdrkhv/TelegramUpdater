@@ -1,0 +1,8 @@
+@startuml
+class MessageTextFilter {
+    + MessageTextFilter(filter:Func<string, bool>)
+}
+class "Filter`1"<T> {
+}
+"Filter`1" "<Message>" <|-- MessageTextFilter
+@enduml

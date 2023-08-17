@@ -1,0 +1,8 @@
+@startuml
+class InlineQueryChannel <<sealed>> {
+    + InlineQueryChannel(timeOut:TimeSpan, filter:IFilter<InlineQuery>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<InlineQuery>" <|-- InlineQueryChannel
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ChatTypeAttribute {
+    + ChatTypeAttribute(flags:ChatTypeFlags)
+}
+FilterAttributeBuilder <|-- ChatTypeAttribute
+@enduml

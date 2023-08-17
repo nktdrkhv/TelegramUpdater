@@ -1,0 +1,13 @@
+@startuml
+class UpdaterExtensions <<static>> {
+    <<internal>> {static} GetInnerUpdate(update:Update) : object
+    <<internal>> {static} GetInnerUpdate(update:Update) : T
+    <<internal>> {static} GetUpdateType() : UpdateType?
+    - {static} TryResolveNamespaceToUpdateType(currentNs:string, updateType:UpdateType?, type:Type?) : bool
+    + {static} IterCollectedScopedUpdateHandlerTypes(handlersParentNamespace:string) : IEnumerable<(UpdateType updateType, Type update, Type handler)>
+    + {static} IterCollectedScopedContainers(handlersParentNamespace:string) : IEnumerable<IScopedUpdateHandlerContainer>
+    + {static} AutoCollectScopedHandlers(updater:IUpdater, handlersParentNamespace:string) : IUpdater
+    + {static} <<async>> StartAsync(updater:IUpdater, cancellationToken:CancellationToken) : Task
+    + {static} <<async>> SetCommandsAsync(updater:IUpdater) : Task
+}
+@enduml

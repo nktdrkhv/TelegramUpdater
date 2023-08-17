@@ -1,0 +1,6 @@
+@startuml
+class StateKeeperNotRegistried <<sealed>> {
+    + StateKeeperNotRegistried(stateKeeperName:string?)
+}
+Exception <|-- StateKeeperNotRegistried
+@enduml

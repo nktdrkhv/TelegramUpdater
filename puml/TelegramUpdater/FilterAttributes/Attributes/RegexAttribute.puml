@@ -1,0 +1,10 @@
+@startuml
+class RegexAttribute <<sealed>> {
+    + RegexAttribute(pattern:string, regexOptions:RegexOptions, catchCaption:bool)
+    <<internal>> Pattern : string <<get>> <<init>>
+    <<internal>> RegexOptions : RegexOptions? <<get>> <<init>>
+    <<internal>> CatchCaption : bool? <<get>> <<init>>
+    # <<internal>> <<override>> GetFilterTypeOf(requestedType:Type) : object
+}
+AbstractFilterAttribute <|-- RegexAttribute
+@enduml

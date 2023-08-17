@@ -1,0 +1,23 @@
+@startuml
+class FilterCutify <<static>> {
+    + {static} Always() : Filter<T>
+    + {static} When(func:Func<IUpdater, T, bool>) : Filter<T>
+    + {static} When(func:Filter<T>?) : Filter<T>?
+    + {static} OnCommand(commands:string[]) : Filter<Message>
+    + {static} OnCommand(prefix:char, commands:string[]) : Filter<Message>
+    + {static} TextMatchs(pattern:string, catchCaption:bool, regexOptions:RegexOptions?) : Filter<Message>
+    + {static} DataMatches(pattern:string, regexOptions:RegexOptions?) : Filter<CallbackQuery>
+    + {static} PM() : Filter<Message>
+    + {static} Group() : Filter<Message>
+    + {static} MsgOfUsers(users:long[]) : Filter<Message>
+    + {static} CbqOfUsers(users:long[]) : Filter<CallbackQuery>
+    + {static} Replied() : Filter<Message>
+    + {static} NotNullFilter(selector:Func<K, T?>) : Filter<K>
+    + {static} Text() : Filter<Message>
+    + {static} Caption() : Filter<Message>
+    + {static} Photo() : Filter<Message>
+    + {static} Video() : Filter<Message>
+    + {static} InChatType(chatTypeFlags:ChatTypeFlags) : Filter<Message>
+    + {static} MessageTypeOf(messageType:MessageType) : Filter<Message>
+}
+@enduml

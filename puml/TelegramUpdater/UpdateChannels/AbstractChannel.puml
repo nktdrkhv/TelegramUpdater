@@ -1,0 +1,18 @@
+@startuml
+abstract class "AbstractChannel`1"<T> {
+    - <<readonly>> _filter : IFilter<T>?
+    # AbstractChannel(updateType:UpdateType, getT:Func<Update, T?>, timeOut:TimeSpan, filter:IFilter<T>?)
+    - ExtraData : IReadOnlyDictionary<string, object>? <<get>>
+    + GetActualUpdate(update:Update) : T?
+    - ShouldChannel(updater:IUpdater, t:T) : bool
+    + ShouldChannel(updater:IUpdater, update:Update) : bool
+}
+class "IGenericUpdateChannel`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+"IGenericUpdateChannel`1" "<T>" <|-- "AbstractChannel`1"
+"AbstractChannel`1" --> "_getT<Update,T?>" "Func`2"
+"AbstractChannel`1" --> "UpdateType" UpdateType
+"AbstractChannel`1" --> "TimeOut" TimeSpan
+@enduml

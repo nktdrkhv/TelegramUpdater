@@ -1,0 +1,8 @@
+@startuml
+class ChosenInlineResultChannel <<sealed>> {
+    + ChosenInlineResultChannel(timeOut:TimeSpan, filter:IFilter<ChosenInlineResult>?)
+}
+class "AnyChannel`1"<T> {
+}
+"AnyChannel`1" "<ChosenInlineResult>" <|-- ChosenInlineResultChannel
+@enduml

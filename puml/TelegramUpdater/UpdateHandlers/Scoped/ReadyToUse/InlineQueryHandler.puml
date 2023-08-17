@@ -1,0 +1,13 @@
+@startuml
+abstract class InlineQueryHandler {
+    # InlineQueryHandler(group:int)
+    # Id : string <<get>>
+    # Query : string <<get>>
+    # ChatType : ChatType? <<get>>
+    + <<async>> AnswerAsync(results:IEnumerable<InlineQueryResult>, cacheTime:int?, isPersonal:bool?, nextOffset:string?, button:InlineQueryResultsButton?, cancellationToken:CancellationToken) : Task
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<InlineQuery>" <|-- InlineQueryHandler
+InlineQueryHandler --> "From" User
+@enduml

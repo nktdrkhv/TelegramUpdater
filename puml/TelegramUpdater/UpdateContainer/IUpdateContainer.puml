@@ -1,0 +1,11 @@
+@startuml
+interface IUpdateContainer {
+    + ContainsKey(key:string) : bool
+}
+class "ShiningInfo`2"<T1,T2> {
+}
+IUpdateContainer --> "Updater" IUpdater
+IUpdateContainer --> "Container" Update
+IUpdateContainer --> "ShiningInfo<long,Update>" "ShiningInfo`2"
+IUpdateContainer --> "BotClient" ITelegramBotClient
+@enduml

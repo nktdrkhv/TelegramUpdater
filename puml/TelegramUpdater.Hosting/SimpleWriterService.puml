@@ -1,0 +1,7 @@
+@startuml
+class SimpleWriterService {
+    + SimpleWriterService(updater:IUpdater)
+    + <<override>> <<async>> ExecuteAsync(stoppingToken:CancellationToken) : Task
+}
+UpdateWriterServiceAbs <|-- SimpleWriterService
+@enduml

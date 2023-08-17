@@ -1,0 +1,10 @@
+@startuml
+class UpdaterOptions <<struct>> {
+    + UpdaterOptions(maxDegreeOfParallelism:int?, logger:ILogger<IUpdater>?, cancellationToken:CancellationToken, flushUpdatesQueue:bool, allowedUpdates:UpdateType[]?, switchChatId:bool)
+    + MaxDegreeOfParallelism : int? <<get>>
+    + Logger : ILogger<IUpdater>? <<get>>
+    + FlushUpdatesQueue : bool <<get>>
+    + SwitchChatId : bool <<get>> = false
+}
+UpdaterOptions --> "CancellationToken" CancellationToken
+@enduml

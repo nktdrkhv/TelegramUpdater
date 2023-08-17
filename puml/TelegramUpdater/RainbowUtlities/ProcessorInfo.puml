@@ -1,0 +1,9 @@
+@startuml
+class "ProcessorInfo`2"<TId,TValue> <<sealed>> {
+    <<internal>> ProcessorInfo(id:ushort, ownerId:OwnerInfo<TId>?, taskStatus:TaskStatus?, pendingCount:int)
+    + Id : ushort <<get>>
+    + OwnerId : OwnerInfo<TId>? <<get>>
+    + TaskStatus : TaskStatus? <<get>>
+    + PendingCount : int <<get>>
+}
+@enduml

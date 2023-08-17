@@ -1,0 +1,8 @@
+@startuml
+class PollHandler <<sealed>> {
+    + PollHandler(callback:Func<IContainer<Poll>, Task>, filter:IFilter<Poll>?, group:int)
+}
+class "AnyHandler`1"<T> {
+}
+"AnyHandler`1" "<Poll>" <|-- PollHandler
+@enduml
