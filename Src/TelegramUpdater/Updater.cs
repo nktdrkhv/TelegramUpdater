@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -23,7 +24,7 @@ public sealed class Updater : IUpdater
     private readonly List<IExceptionHandler> _exceptionHandlers;
     private readonly ILogger<IUpdater> _logger;
     private readonly Type? _preUpdateProcessorType;
-    private readonly Dictionary<string, object> _extraData;
+    private readonly ConcurrentDictionary<string, object> _extraData;
     private UpdaterOptions _updaterOptions;
     private User? _me = null;
 
@@ -228,7 +229,7 @@ public sealed class Updater : IUpdater
     public object this[string key]
     {
         get => _extraData[key];
-        set => _extraData.Add(key, value);
+        set => _extraData.AddOrUpdate(key, value, (key, value) => value);
     }
 
     /// <inheritdoc/>

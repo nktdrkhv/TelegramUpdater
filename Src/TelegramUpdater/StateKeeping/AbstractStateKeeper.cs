@@ -1,11 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TelegramUpdater.StateKeeping;
 
 public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, TFrom>
     where TState : IEquatable<TState>
 {
-    private readonly Dictionary<long, TState> _state;
+    private readonly ConcurrentDictionary<long, TState> _state;
 
     protected AbstractStateKeeper()
     {
@@ -43,7 +44,7 @@ public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, 
         if (HasAnyState(stateOf))
             _state[KeyResolver(stateOf)] = theState;
         else
-            _state.Add(KeyResolver(stateOf), theState);
+            _state.AddOrUpdate(KeyResolver(stateOf), theState, (_, _) => theState);
     }
 
     /// <inheritdoc/>
@@ -58,7 +59,7 @@ public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, 
     {
         if (HasAnyState(stateOf))
         {
-            return _state.Remove(KeyResolver(stateOf));
+            return _state.TryRemove(KeyResolver(stateOf), out _);
         }
 
         return false;
