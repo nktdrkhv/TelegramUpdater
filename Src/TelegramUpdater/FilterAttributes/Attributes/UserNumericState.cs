@@ -24,4 +24,12 @@ public sealed class UserNumericState : FilterAttributeBuilder
             new CallbackQueryUserHasNumericStateFilter(stateKeeperName, anyState ? null : state)))
     {
     }
+
+    public UserNumericState(int stateKeeperName, int state = 0, bool anyState = false)
+        : base(builder => builder.AddFilterForUpdate(
+            new MessageUserHasNumericStateFilter(stateKeeperName.ToString(), anyState ? null : state))
+        .AddFilterForUpdate(
+            new CallbackQueryUserHasNumericStateFilter(stateKeeperName.ToString(), anyState ? null : state)))
+    {
+    }
 }
