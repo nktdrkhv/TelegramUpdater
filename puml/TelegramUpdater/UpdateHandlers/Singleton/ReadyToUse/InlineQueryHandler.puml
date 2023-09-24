@@ -1,8 +1,0 @@
-@startuml
-class InlineQueryHandler <<sealed>> {
-    + InlineQueryHandler(callback:Func<IContainer<InlineQuery>, Task>, filter:IFilter<InlineQuery>?, group:int)
-}
-class "AnyHandler`1"<T> {
-}
-"AnyHandler`1" "<InlineQuery>" <|-- InlineQueryHandler
-@enduml

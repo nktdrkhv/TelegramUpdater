@@ -1,6 +1,0 @@
-@startuml
-interface "IGenericScopedUpdateHandlerContainer`1"<T> {
-    + Filter : IFilter<T>? <<get>>
-}
-IScopedUpdateHandlerContainer <|-- "IGenericScopedUpdateHandlerContainer`1"
-@enduml

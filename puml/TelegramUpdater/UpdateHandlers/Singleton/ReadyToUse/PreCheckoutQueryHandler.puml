@@ -1,8 +1,0 @@
-@startuml
-class PreCheckoutQueryHandler <<sealed>> {
-    + PreCheckoutQueryHandler(callback:Func<IContainer<PreCheckoutQuery>, Task>, filter:IFilter<PreCheckoutQuery>?, group:int)
-}
-class "AnyHandler`1"<T> {
-}
-"AnyHandler`1" "<PreCheckoutQuery>" <|-- PreCheckoutQueryHandler
-@enduml

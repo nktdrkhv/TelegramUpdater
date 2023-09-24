@@ -1,8 +1,0 @@
-@startuml
-class ChannelPostHandler <<sealed>> {
-    + ChannelPostHandler(callback:Func<IContainer<Message>, Task>, filter:IFilter<Message>?, group:int)
-}
-class "AnyHandler`1"<T> {
-}
-"AnyHandler`1" "<Message>" <|-- ChannelPostHandler
-@enduml

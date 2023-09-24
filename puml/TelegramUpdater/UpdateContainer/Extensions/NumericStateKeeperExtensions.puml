@@ -1,8 +1,0 @@
-@startuml
-class NumericStateKeeperExtensions <<static>> {
-    + {static} SetNumericState(container:IContainer<T>, stateKeeperName:string, user:User, state:int) : bool
-    + {static} TryForwardNumericState(container:IContainer<T>, stateKeeperName:string, user:User, state:int?) : bool
-    + {static} TryBackwardNumericState(container:IContainer<T>, stateKeeperName:string, user:User, state:int?) : bool
-    + {static} DeleteNumericState(container:IContainer<T>, stateKeeperName:string, user:User) : bool
-}
-@enduml

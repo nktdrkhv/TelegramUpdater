@@ -1,9 +1,0 @@
-@startuml
-abstract class AbstractPreUpdateProcessor {
-    # AbstractPreUpdateProcessor(updater:IUpdater)
-    # AbstractPreUpdateProcessor()
-    <<internal>> SetUpdater(updater:IUpdater) : void
-    + {abstract} PreProcessor(shiningInfo:ShiningInfo<long, Update>) : Task<bool>
-}
-AbstractPreUpdateProcessor o-> "Updater" IUpdater
-@enduml

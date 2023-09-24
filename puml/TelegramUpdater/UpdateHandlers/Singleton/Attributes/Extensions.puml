@@ -1,9 +1,0 @@
-@startuml
-class SingletonAttributesExtensions <<static>> {
-    <<internal>> {static} GetContainerType(container:Type) : Type?
-    <<internal>> {static} CreateHandlerOfType(updateType:UpdateType, resolver:Func<Update, T?>, method:MethodInfo, group:int) : ISingletonUpdateHandler?
-    <<internal>> {static} GetSingletonUpdateHandler(method:MethodInfo, updateType:UpdateType, group:int) : ISingletonUpdateHandler?
-    + {static} IterSingletonUpdateHandlerCallbacks() : IEnumerable<ISingletonUpdateHandler>
-    + {static} CollectSingletonUpdateHandlerCallbacks(updater:IUpdater) : IUpdater
-}
-@enduml

@@ -1,6 +1,0 @@
-@startuml
-interface "IContainer`1"<T> {
-    + Update : T <<get>>
-}
-IUpdateContainer <|-- "IContainer`1"
-@enduml

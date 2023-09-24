@@ -1,8 +1,0 @@
-@startuml
-class EditedMessageChannel <<sealed>> {
-    + EditedMessageChannel(timeOut:TimeSpan, filter:IFilter<Message>?)
-}
-class "AnyChannel`1"<T> {
-}
-"AnyChannel`1" "<Message>" <|-- EditedMessageChannel
-@enduml

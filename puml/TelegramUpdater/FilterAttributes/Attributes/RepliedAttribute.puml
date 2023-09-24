@@ -1,6 +1,0 @@
-@startuml
-class RepliedAttribute <<sealed>> {
-    + RepliedAttribute()
-}
-FilterAttributeBuilder <|-- RepliedAttribute
-@enduml

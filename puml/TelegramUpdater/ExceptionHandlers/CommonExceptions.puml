@@ -1,5 +1,0 @@
-@startuml
-class CommonExceptions <<static>> {
-    + {static} ParsingException(callback:Func<IUpdater, Exception, Task>, allowedHandlers:Type[]?) : ExceptionHandler<ApiRequestException>
-}
-@enduml

@@ -1,9 +1,0 @@
-@startuml
-interface IScopedUpdateHandlerContainer {
-    <<internal>> ExtraData : IReadOnlyDictionary<string, object>? <<get>>
-    + ShouldHandle(updater:IUpdater, update:Update) : bool
-    <<internal>> CreateInstance(scope:IServiceScope?) : IScopedUpdateHandler?
-}
-IScopedUpdateHandlerContainer --> "ScopedHandlerType" Type
-IScopedUpdateHandlerContainer --> "UpdateType" UpdateType
-@enduml

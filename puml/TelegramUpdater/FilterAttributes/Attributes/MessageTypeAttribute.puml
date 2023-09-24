@@ -1,6 +1,0 @@
-@startuml
-class MessageTypeAttribute <<sealed>> {
-    + MessageTypeAttribute(messageType:MessageType)
-}
-FilterAttributeBuilder <|-- MessageTypeAttribute
-@enduml

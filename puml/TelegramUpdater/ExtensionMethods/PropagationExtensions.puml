@@ -1,6 +1,0 @@
-@startuml
-class PropagationExtensions <<static>> {
-    <<internal>> {static} StopPropagation(_:IContainer<T>) : void
-    <<internal>> {static} ContinuePropagation(_:IContainer<T>) : void
-}
-@enduml

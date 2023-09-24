@@ -1,8 +1,0 @@
-@startuml
-class ChatMemberChannel <<sealed>> {
-    + ChatMemberChannel(timeOut:TimeSpan, filter:IFilter<ChatMemberUpdated>?)
-}
-class "AnyChannel`1"<T> {
-}
-"AnyChannel`1" "<ChatMemberUpdated>" <|-- ChatMemberChannel
-@enduml

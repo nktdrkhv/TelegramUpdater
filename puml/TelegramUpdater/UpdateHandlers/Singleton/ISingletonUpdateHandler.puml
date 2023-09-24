@@ -1,7 +1,0 @@
-@startuml
-interface ISingletonUpdateHandler {
-    + ShouldHandle(updater:IUpdater, update:Update) : bool
-}
-IUpdateHandler <|-- ISingletonUpdateHandler
-ISingletonUpdateHandler --> "UpdateType" UpdateType
-@enduml

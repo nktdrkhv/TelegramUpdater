@@ -1,8 +1,0 @@
-@startuml
-class "OwnerInfo`1"<TId> <<struct>> {
-    <<internal>> OwnerInfo(ownerId:TId, queueId:ushort, queueStart:DateTime)
-    + OwnerId : TId <<get>>
-    + QueueId : ushort <<get>>
-}
-"OwnerInfo`1" --> "QueueStart" DateTime
-@enduml

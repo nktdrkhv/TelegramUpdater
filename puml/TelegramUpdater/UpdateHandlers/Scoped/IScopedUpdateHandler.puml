@@ -1,7 +1,0 @@
-@startuml
-interface IScopedUpdateHandler {
-    <<internal>> ExtraData : IReadOnlyDictionary<string, object>? <<get>>
-    <<internal>> SetExtraData(extraData:IReadOnlyDictionary<string, object>?) : void
-}
-IUpdateHandler <|-- IScopedUpdateHandler
-@enduml

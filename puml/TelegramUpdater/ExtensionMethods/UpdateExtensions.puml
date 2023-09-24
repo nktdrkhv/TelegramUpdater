@@ -1,6 +1,0 @@
-@startuml
-class UpdateExtensions <<static>> {
-    + {static} GetSenderId(update:Update) : long?
-    + {static} GetChatId(update:Update) : long?
-}
-@enduml

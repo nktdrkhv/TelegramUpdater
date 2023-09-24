@@ -1,9 +1,0 @@
-@startuml
-abstract class "AbstractNumericStateKeeper`1"<TFrom> {
-    + TryMoveForward(stateOf:TFrom, newState:int?) : bool
-    + TryMoveBackward(stateOf:TFrom, newState:int?) : bool
-}
-class "AbstractStateKeeper`2"<T1,T2> {
-}
-"AbstractStateKeeper`2" "<int,TFrom>" <|-- "AbstractNumericStateKeeper`1"
-@enduml

@@ -1,6 +1,0 @@
-@startuml
-class TextAttribute <<sealed>> {
-    + TextAttribute()
-}
-FilterAttributeBuilder <|-- TextAttribute
-@enduml

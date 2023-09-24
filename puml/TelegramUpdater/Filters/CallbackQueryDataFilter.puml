@@ -1,8 +1,0 @@
-@startuml
-class CallbackQueryDataFilter {
-    + CallbackQueryDataFilter(filter:Func<string, bool>)
-}
-class "Filter`1"<T> {
-}
-"Filter`1" "<CallbackQuery>" <|-- CallbackQueryDataFilter
-@enduml

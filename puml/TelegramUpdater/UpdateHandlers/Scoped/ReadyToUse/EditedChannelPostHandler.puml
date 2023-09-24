@@ -1,8 +1,0 @@
-@startuml
-abstract class EditedChannelPostHandler {
-    + EditedChannelPostHandler(group:int)
-}
-class "AnyHandler`1"<T> {
-}
-"AnyHandler`1" "<Message>" <|-- EditedChannelPostHandler
-@enduml

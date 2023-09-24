@@ -1,8 +1,0 @@
-@startuml
-abstract class "AnyChannel`1"<T> {
-    <<internal>> AnyChannel(updateType:UpdateType, getT:Func<Update, T?>, timeOut:TimeSpan, filter:IFilter<T>?)
-}
-class "AbstractChannel`1"<T> {
-}
-"AbstractChannel`1" "<T>" <|-- "AnyChannel`1"
-@enduml

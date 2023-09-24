@@ -1,8 +1,0 @@
-@startuml
-class PollChannel <<sealed>> {
-    + PollChannel(timeOut:TimeSpan, filter:IFilter<Poll>?)
-}
-class "AnyChannel`1"<T> {
-}
-"AnyChannel`1" "<Poll>" <|-- PollChannel
-@enduml

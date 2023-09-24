@@ -1,7 +1,0 @@
-@startuml
-interface IUpdateChannel {
-    + ShouldChannel(updater:IUpdater, update:Update) : bool
-}
-IUpdateChannel --> "UpdateType" UpdateType
-IUpdateChannel --> "TimeOut" TimeSpan
-@enduml

@@ -21,9 +21,14 @@ public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, 
 
     /// <inheritdoc/>
     public bool HasAnyState(TFrom stateOf) => _state.ContainsKey(KeyResolver(stateOf));
+    /// <inheritdoc/>
+    public bool HasAnyState(long stateOf) => _state.ContainsKey(stateOf);
 
     /// <inheritdoc/>
     public TState GetState(TFrom stateOf) => _state[KeyResolver(stateOf)];
+
+    /// <inheritdoc/>
+    public TState GetState(long stateOf) => _state[stateOf];
 
     /// <inheritdoc/>
     public bool TryGetState(TFrom stateOf, [NotNullWhen(true)] out TState? theState)
@@ -31,6 +36,19 @@ public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, 
         if (HasAnyState(stateOf))
         {
             theState = _state[KeyResolver(stateOf)];
+            return true;
+        }
+
+        theState = default;
+        return false;
+    }
+
+    /// <inheritdoc/>
+    public bool TryGetState(long stateOf, [NotNullWhen(true)] out TState? theState)
+    {
+        if (HasAnyState(stateOf))
+        {
+            theState = _state[stateOf];
             return true;
         }
 
@@ -48,10 +66,26 @@ public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, 
     }
 
     /// <inheritdoc/>
+    public void SetState(long stateOf, TState theState)
+    {
+        if (HasAnyState(stateOf))
+            _state[stateOf] = theState;
+        else
+            _state.AddOrUpdate(stateOf, theState, (_, _) => theState);
+    }
+
+    /// <inheritdoc/>
     public bool HasState(TFrom stateOf, TState theState)
     {
         if (!HasAnyState(stateOf)) return false;
         return _state[KeyResolver(stateOf)].Equals(theState);
+    }
+
+    /// <inheritdoc/>
+    public bool HasState(long stateOf, TState theState)
+    {
+        if (!HasAnyState(stateOf)) return false;
+        return _state[stateOf].Equals(theState);
     }
 
     /// <inheritdoc/>
@@ -60,6 +94,17 @@ public abstract class AbstractStateKeeper<TState, TFrom> : IStateKeeper<TState, 
         if (HasAnyState(stateOf))
         {
             return _state.TryRemove(KeyResolver(stateOf), out _);
+        }
+
+        return false;
+    }
+
+    /// <inheritdoc/>
+    public bool DeleteState(long stateOf)
+    {
+        if (HasAnyState(stateOf))
+        {
+            return _state.TryRemove(stateOf, out _);
         }
 
         return false;
