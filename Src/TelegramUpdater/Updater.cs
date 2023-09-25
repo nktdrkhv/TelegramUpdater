@@ -232,6 +232,8 @@ public sealed class Updater : IUpdater
         set => _extraData.AddOrUpdate(key, value, (key, value) => value);
     }
 
+    public bool TryRemove(string key, out object? value) => _extraData.TryRemove(key, out value);
+
     /// <inheritdoc/>
     public void EmergencyCancel()
     {

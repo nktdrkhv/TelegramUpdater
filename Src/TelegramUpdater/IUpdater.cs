@@ -110,6 +110,9 @@ public interface IUpdater
     /// <returns></returns>
     public object this[string key] { get; set; }
 
+    /// <inheritdoc/>
+    public bool TryRemove(string key, out object? value);
+
     /// <summary>
     /// Check if an <see cref="string"/> key exists in updater extra data.
     /// </summary>
