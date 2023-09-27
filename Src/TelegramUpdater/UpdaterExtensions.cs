@@ -153,7 +153,10 @@ public static class UpdaterExtensions
             .Where(x => typeof(IScopedUpdateHandler).IsAssignableFrom(x))
             .ToArray();
 
-        foreach (var scopedType in scopedHandlersTypes)
+        foreach (var scopedType in scopedHandlersTypes.OrderBy(t =>
+            t.GetCustomAttribute<OrderAttribute>() == null
+            ? -1
+            : t.GetCustomAttribute<OrderAttribute>()!.Priority))
         {
             if (!TryResolveNamespaceToUpdateType(
                 scopedType.Namespace!, out var updateType1, out var type))
