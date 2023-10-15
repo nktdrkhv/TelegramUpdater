@@ -52,18 +52,10 @@ public abstract class MessageHandler : AnyHandler<Message>
         bool? allowSendingWithoutReply = default,
         IReplyMarkup? replyMarkup = default,
         CancellationToken cancellationToken = default)
-        => await BotClient.SendTextMessageAsync(Chat.Id,
-                                                text,
-                                                messageThreadId ?? ThreadId,
-                                                parseMode,
-                                                entities,
-                                                disableWebPagePreview,
-                                                disableNotification,
-                                                protectContents,
-                                                (sendMessageAsReply ?? false) ? Id : 0,
-                                                allowSendingWithoutReply,
-                                                replyMarkup,
-                                                cancellationToken);
+        => await BotClient.SendTextMessageAsync(
+            Chat.Id, text, messageThreadId ?? ThreadId, parseMode, entities, disableWebPagePreview, disableNotification,
+            protectContents, (sendMessageAsReply ?? false) ? Id : 0, allowSendingWithoutReply, replyMarkup,
+            cancellationToken);
 
     /// <inheritdoc cref="TelegramBotClientExtensions.SendTextMessageAsync(
     /// ITelegramBotClient, ChatId, string, int?, ParseMode?,
@@ -79,25 +71,32 @@ public abstract class MessageHandler : AnyHandler<Message>
         bool? allowSendingWithoutReply = default,
         IReplyMarkup? replyMarkup = default,
         CancellationToken cancellationToken = default)
-        => await BotClient.SendTextMessageAsync(chatId,
-                                                text,
-                                                messageThreadId ?? ThreadId,
-                                                parseMode,
-                                                entities,
-                                                disableWebPagePreview,
-                                                disableNotification,
-                                                protectContents,
-                                                replyToMessageId,
-                                                allowSendingWithoutReply,
-                                                replyMarkup,
-                                                cancellationToken);
+        => await BotClient.SendTextMessageAsync(
+            chatId, text, messageThreadId ?? ThreadId, parseMode, entities, disableWebPagePreview, disableNotification,
+            protectContents, replyToMessageId, allowSendingWithoutReply, replyMarkup, cancellationToken);
+
+    /// <inheritdoc cref="TelegramBotClientExtensions.SendTextMessageAsync(
+    /// ITelegramBotClient, ChatId, string, int?, ParseMode?,
+    /// IEnumerable{MessageEntity}?, bool?, bool?, bool?, int?, bool?,
+    /// IReplyMarkup?, CancellationToken)"/>.
+    protected async Task<Message> SendTextMessageAsync(
+        string text, int? messageThreadId = null, ParseMode? parseMode = default,
+        IEnumerable<MessageEntity>? entities = default,
+        bool? disableWebPagePreview = default,
+        bool? disableNotification = default,
+        bool? protectContents = default,
+        int? replyToMessageId = default,
+        bool? allowSendingWithoutReply = default,
+        IReplyMarkup? replyMarkup = default,
+        CancellationToken cancellationToken = default)
+        => await BotClient.SendTextMessageAsync(
+            Chat.Id, text, messageThreadId ?? ThreadId, parseMode, entities, disableWebPagePreview, disableNotification,
+            protectContents, replyToMessageId, allowSendingWithoutReply, replyMarkup, cancellationToken);
 
     /// <inheritdoc cref="TelegramBotClientExtensions.DeleteMessageAsync(
     /// ITelegramBotClient, ChatId, int, CancellationToken)"/>
-    protected async Task DeleteAsync(CancellationToken cancellationToken = default)
-    {
+    protected async Task DeleteAsync(CancellationToken cancellationToken = default) =>
         await BotClient.DeleteMessageAsync(Chat.Id, Id, cancellationToken);
-    }
 
     /// <summary>
     /// Asks a user to input an text message and waits for it.
